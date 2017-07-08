@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- 
+		base-package에서부터 하부로 스캔하여 애노테이션이 붙어 있는 클래스들을 빈으로 등록한다.
+		빈 등록대상이 되기 위해 사용하는 애노테이션
+		@Named
+		@Component
+		@Controller, @Service, @Repository
+		@RestController, @ControllerAdvice ...
+		1. 빈생성
+	 -->
+	<context:component-scan base-package="com.example.ioc.annotation"/>
+
+
+	<!-- 
+		컨테이너에 등록된 빈들을 대상으로 DI를 처리한다.
+		@Autowired @Resource @Inject
+		@Qualifier @Named
+		component-scan에 annotation-config가 포함되어 있다.
+		2. 관계설정
+	 -->
+	<!-- <context:annotation-config/> -->
+</beans>
