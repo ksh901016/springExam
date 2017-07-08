@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<aop:config> 
+		<!-- ref에는 Advice(충고)를 담고 있는 Aspect가 온다. -->
+		<aop:aspect id="helloAspect" ref="logging">
+			<aop:pointcut id="selectSayHello1" expression="execution(* com.example.aop.xml.PrintMsg.sayHello1(..))"/>
+			<!-- myAdivce는 Aspsect 클래스(logging)의 충고용 메소드 -->
+			<aop:around pointcut-ref="selectSayHello1" method="myAdvice"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 타겟 클래스 -->
+	<bean id="printMsg" class="com.example.aop.xml.PrintMsg"/>
+	<!-- Advice(충고)들이 모여있는 Aspect 클래스 -->
+	<bean id="logging" class="com.example.aop.xml.LoggingAspect"/>
+
+</beans>
